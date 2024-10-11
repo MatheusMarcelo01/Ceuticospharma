@@ -1,8 +1,8 @@
+
 // pages/api/products/index.tsx
-import { NextApiRequest, NextApiResponse } from 'next';
 import pool from '../../../utils/db';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { name, image, price } = req.body;
 
