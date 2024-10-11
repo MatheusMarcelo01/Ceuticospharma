@@ -1,32 +1,20 @@
 import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-interface UserData {
-  name: string;
-  email: string;
-}
-
 interface ProfileProps {
   showProfileData?: boolean;
 }
 
 export function Profile({ showProfileData = true }: ProfileProps) {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     // Recuperar dados do localStorage ao montar o componente
     const storedUserData = localStorage.getItem('userData');
     if (storedUserData) {
-      const parsedData = JSON.parse(storedUserData);
-      
-      // Verificar se os dados correspondem à interface UserData
-      if (typeof parsedData === 'object' && parsedData !== null && 
-          'name' in parsedData && 'email' in parsedData &&
-          typeof parsedData.name === 'string' && typeof parsedData.email === 'string') {
-        setUserData(parsedData);
-      }
+      setUserData(JSON.parse(storedUserData));
     }
-  }, []);
+  }, []); // O segundo parâmetro [] garante que este efeito só seja executado uma vez ao montar o componente
 
   return (
     <Flex align="center">
