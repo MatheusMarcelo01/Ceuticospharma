@@ -14,15 +14,12 @@ export function Profile({ showProfileData = true }: ProfileProps) {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    // Recuperar dados do localStorage ao montar o componente
     const storedUserData = localStorage.getItem('userData');
     if (storedUserData) {
       const parsedData = JSON.parse(storedUserData);
       
-      // Verificar se os dados correspondem à interface UserData
-      if (typeof parsedData === 'object' && parsedData !== null && 
-          'name' in parsedData && 'email' in parsedData &&
-          typeof parsedData.name === 'string' && typeof parsedData.email === 'string') {
+      // Verificação do tipo
+      if (parsedData && typeof parsedData.name === 'string' && typeof parsedData.email === 'string') {
         setUserData(parsedData);
       }
     }

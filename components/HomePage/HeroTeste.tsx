@@ -95,9 +95,8 @@ export default function CallToActionWithVideo() {
             <IconButton
               variant={'ghost'}
               _hover={{ bg: 'transparent' }}
-              aria-label="Descrição do botão" // Adicione esta linha
-
               size={'lg'}
+              aria-label="Descrição do botão" 
               color={'white'}
               position={'absolute'}
               left={'50%'}
