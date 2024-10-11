@@ -1,12 +1,17 @@
 import { Avatar, Box, Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
+interface UserData {
+  name: string;
+  email: string;
+}
+
 interface ProfileProps {
   showProfileData?: boolean;
 }
 
 export function Profile({ showProfileData = true }: ProfileProps) {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<UserData | null>(null); // Defina o tipo
 
   useEffect(() => {
     // Recuperar dados do localStorage ao montar o componente
