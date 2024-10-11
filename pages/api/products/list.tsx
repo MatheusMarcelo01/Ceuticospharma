@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.error('Erro ao obter produtos:', error);
 
       // Verificação do tipo do erro
-      const errorMessage = (error instanceof Error) ? error.message : 'Erro desconhecido';
+      const errorMessage = error instanceof Error ? error.message : 'Erro desconhecido';
       res.status(500).json({ error: 'Erro interno do servidor', details: errorMessage });
     }
   } else {
