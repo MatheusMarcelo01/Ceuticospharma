@@ -11,7 +11,7 @@ interface ProfileProps {
 }
 
 export function Profile({ showProfileData = true }: ProfileProps) {
-  const [userData, setUserData] = useState<UserData | null>(null); // Defina o tipo
+  const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
     // Recuperar dados do localStorage ao montar o componente
@@ -20,11 +20,13 @@ export function Profile({ showProfileData = true }: ProfileProps) {
       const parsedData = JSON.parse(storedUserData);
       
       // Verificar se os dados correspondem à interface UserData
-      if (parsedData && typeof parsedData.name === 'string' && typeof parsedData.email === 'string') {
+      if (typeof parsedData === 'object' && parsedData !== null && 
+          'name' in parsedData && 'email' in parsedData &&
+          typeof parsedData.name === 'string' && typeof parsedData.email === 'string') {
         setUserData(parsedData);
       }
     }
-  }, []); // O segundo parâmetro [] garante que este efeito só seja executado uma vez ao montar o componente
+  }, []);
 
   return (
     <Flex align="center">
