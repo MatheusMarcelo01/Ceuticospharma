@@ -17,7 +17,12 @@ export function Profile({ showProfileData = true }: ProfileProps) {
     // Recuperar dados do localStorage ao montar o componente
     const storedUserData = localStorage.getItem('userData');
     if (storedUserData) {
-      setUserData(JSON.parse(storedUserData));
+      const parsedData = JSON.parse(storedUserData);
+      
+      // Verificar se os dados correspondem à interface UserData
+      if (parsedData && typeof parsedData.name === 'string' && typeof parsedData.email === 'string') {
+        setUserData(parsedData);
+      }
     }
   }, []); // O segundo parâmetro [] garante que este efeito só seja executado uma vez ao montar o componente
 
