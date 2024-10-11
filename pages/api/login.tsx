@@ -1,9 +1,8 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import pool from '../../utils/db';
 import * as bcrypt from 'bcrypt';
 
-declare module 'bcrypt';
-
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const { email, password } = req.body;
 
