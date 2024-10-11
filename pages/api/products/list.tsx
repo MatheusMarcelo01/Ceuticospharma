@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).json({ products: result.rows });
     } catch (error) {
       console.error('Erro ao obter produtos:', error);
-      
+
       // Verificação do tipo do erro
       const errorMessage = (error instanceof Error) ? error.message : 'Erro desconhecido';
       res.status(500).json({ error: 'Erro interno do servidor', details: errorMessage });
